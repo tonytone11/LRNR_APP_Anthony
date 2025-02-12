@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import "../styles/TopicSelect.css";
+import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/js/materialize.min.js';
+
 
 const TopicSelect = () => {
     const [formData, setFormData] = useState({
@@ -28,7 +30,7 @@ const TopicSelect = () => {
     };
 
     return (
-        <div className="main-container">
+        <div>
             <div className="row">
                 <div className="col s12">
 
