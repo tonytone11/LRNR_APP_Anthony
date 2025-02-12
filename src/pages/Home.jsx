@@ -1,9 +1,28 @@
 import logo from '../assets/logo.png';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import styled from 'styled-components';
+
 
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
+
+const ResponsiveDiv = styled.div`
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+
+    @media (max-width: 600px) {
+        position: relative;
+        right: 2.5%;
+        flex-direction: column;
+    }
+`;
+
 
 export default function Home() {
     return (
@@ -11,8 +30,8 @@ export default function Home() {
         <Navbar/>
         <div className="container">
             <div className="container center-align">
-            <img src={logo} alt="" style={{width: "32rem", height: "12em" }} />
-                <h5 style={{whiteSpace:"nowrap", color: "#616161", fontSize: "1.7em"}}>Your guided path to programming enlightnment</h5>
+            <img src={logo} alt="" style={{ width: "min(32rem, 80%)", height: "min(12em, 20vh)" }} />
+            <h5 style={{whiteSpace:"nowrap", color: "#616161", fontSize: "clamp(1em, 3vw, 1.7em)"}}>Your guided path to programming enlightnment</h5>
                 <br/>
                 <br/>
                 <div style={{display: "flex", justifyContent: "center"}}>
@@ -22,7 +41,7 @@ export default function Home() {
         </div>
 
         <div style={{marginLeft: "4rem", marginRight: "2rem"}}>
-            <div className="row center-align" style={{ display: "flex", justifyContent: "center", gap: "2rem" }}>
+            <ResponsiveDiv className="row center-align" style={{ display: "flex", justifyContent: "center", gap: "2rem" }} >
                     <div className="col s12 m4">
                         <span className="material-icons" style={{ color: "#1de9b6", transform: "scale(2)", marginBottom: "1rem" }}>flash_on</span>
                         <h5>Personalized Quizzes</h5>
@@ -38,7 +57,7 @@ export default function Home() {
                         <h5>Personal SME</h5>
                         <p className='left-align'>Welcome to the path of knowledge. Our app is like having a personal subject matter expert at your side, guiding you on your journey towards wisdom</p>
                     </div>
-                </div>
+                </ResponsiveDiv>
             </div>
         <Footer/>
         </>
