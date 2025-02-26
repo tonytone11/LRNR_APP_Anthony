@@ -12,6 +12,7 @@ const Login = () => {
 
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const loginUser = (event) => {
     event.preventDefault();
@@ -27,8 +28,12 @@ const Login = () => {
 
     // Validation to check if we found an user
     if (!getUser) {
-      console.log("no user");
+      setErrorMessage("User not found");
+      setUsernameInput("");
+      setPasswordInput("");
       return;
+    } else {
+      setErrorMessage("");
     }
 
     // Updating the global user context with the user
@@ -62,13 +67,15 @@ const Login = () => {
   return (
     <div className="row">
       <form onSubmit={(event) => loginUser(event)} className="col s12">
-        <div className="row">
+        <div className="row container">
           <div className="input-field col s12">
             <input
               onInput={(event) => setUsernameInput(event.target.value)}
               id="username"
               type="text"
               className="validate"
+              required
+              style={{ width: "380px" }}
             />
             <label htmlFor="username">Username</label>
           </div>
@@ -79,16 +86,22 @@ const Login = () => {
               onInput={(event) => setPasswordInput(event.target.value)}
               id="password"
               type="password"
+              required
               className="validate"
             />
             <label htmlFor="password">Password</label>
           </div>
+          <p>{errorMessage}</p>
         </div>
-        <div className="row">
-          <input type="submit" value="Login" />
-        </div>
-        <div className="row">
-          <Link to="/signup">Create an account</Link>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div className="row">
+            <input type="submit" value="Login" className="waves-effect waves-light teal darken-1 btn" />
+          </div>
+          
+          <div>
+
+            <Link to="/signup">Create an account</Link>
+          </div>
         </div>
       </form>
     </div>
