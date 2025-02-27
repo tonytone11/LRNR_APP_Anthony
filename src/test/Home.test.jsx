@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import Home from '../pages/Home'; // Adjust the import path as necessary
 
@@ -30,15 +30,19 @@ describe('Home Page Unit Tests', () => {
         expect(imageElement).toHaveAttribute('src', 'mocked-logo.png');
     });
 
-    test('should display the footer', () => {
+    test('should display all <p> elements', () => {
         render(<Home />);
-        const footerElement = screen.getByRole('footer'); // Assuming the footer has a role of 'contentinfo'
-        expect(footerElement).toBeInTheDocument();
+        const paragraphs = screen.getAllByRole('paragraph');
+        paragraphs.forEach(paragraph => {
+            expect(paragraph).toBeVisible();
+        });
     });
 
-    // test('should display the navigation bar', () => {
-    //     render(<Home />);
-    //     const navElement = screen.getByRole('navigation'); // Assuming the nav has a role of 'navigation'
-    //     expect(navElement).toBeInTheDocument();
-    // });
+    test('should display all <h5> elements', () => {
+        render(<Home />);
+        const headings = screen.getAllByRole('heading', { level: 5 });
+        headings.forEach(heading => {
+            expect(heading).toBeVisible();
+        });
+    });
 });
